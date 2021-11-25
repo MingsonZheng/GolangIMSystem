@@ -15,3 +15,28 @@ An instant messaging system based on golang
 - 更新用户名
 - 公聊模式
 - 私聊模式
+
+构建代码
+```
+go build -o server main.go server.go
+
+go build -o client client.go
+```
+
+启动服务
+```
+./server
+```
+
+启动客户端
+```
+./client
+```
+
+菜单显示
+```
+1.公聊模式
+2.私聊模式
+3.更新用户名
+0.退出
+```
