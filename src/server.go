@@ -143,8 +143,9 @@ go build -o client client.go
 ./server
 
 ./client
-1
-2
 3
-0
+张三
+
+nc 127.0.0.1 8888
+who
 */
