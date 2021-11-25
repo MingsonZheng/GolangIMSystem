@@ -139,18 +139,8 @@ func (this *Server) Start() {
 }
 
 /*
-go build -o server main.go server.go user.go
+go build -o client client.go
 ./server
 
-nc 127.0.0.1 8888
-
-rename|张三
-
-nc 127.0.0.1 8888
-
-rename|李四
-
-who
-
-to|李四|你好啊
+./client
 */
