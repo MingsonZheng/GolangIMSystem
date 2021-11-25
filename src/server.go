@@ -142,5 +142,7 @@ func (this *Server) Start() {
 go build -o client client.go
 ./server
 
-./client
+./client -h
+
+./client -ip 127.0.0.1 -port 8888
 */
