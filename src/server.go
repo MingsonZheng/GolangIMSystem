@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"net"
 	"sync"
 )
@@ -63,6 +64,29 @@ func (this *Server) Handler(conn net.Conn) {
 	// 广播当前用户上线消息
 	this.BroadCast(user, "已上线")
 
+	// 接收客户端发送的消息
+	go func() {
+		buf := make([]byte, 4096)
+		for {
+			n, err := conn.Read(buf)
+			if n == 0 {
+				this.BroadCast(user, "下线")
+				return
+			}
+
+			if err != nil && err != io.EOF {
+				fmt.Println("Conn Read err:", err)
+				return
+			}
+
+			// 提取用户的消息（去除'\n'）
+			msg := string(buf[:n-1])
+
+			// 将得到的消息进行广播
+			this.BroadCast(user, msg)
+		}
+	}()
+
 	// 当前handler阻塞
 	select {}
 }
@@ -100,14 +124,6 @@ go build -o server main.go server.go user.go
 ./server
 
 nc 127.0.0.1 8888
-[127.0.0.1:47456]127.0.0.1:47456:已上线
-[127.0.0.1:47458]127.0.0.1:47458:已上线
-[127.0.0.1:47460]127.0.0.1:47460:已上线
 
-nc 127.0.0.1 8888
-[127.0.0.1:47458]127.0.0.1:47458:已上线
-[127.0.0.1:47460]127.0.0.1:47460:已上线
-
-nc 127.0.0.1 8888
-[127.0.0.1:47460]127.0.0.1:47460:已上线
+hello
 */
