@@ -92,7 +92,7 @@ func (this *Server) Handler(conn net.Conn) {
 			// 当前用户是活跃的，应该重置定时器
 			// 不做任何事情，为了激活select，更新下面的定时器
 
-		case <-time.After(time.Second * 10):
+		case <-time.After(time.Second * 300):
 			// 已经超时
 			// 将当前的User强制的关闭
 
@@ -143,4 +143,14 @@ go build -o server main.go server.go user.go
 ./server
 
 nc 127.0.0.1 8888
+
+rename|张三
+
+nc 127.0.0.1 8888
+
+rename|李四
+
+who
+
+to|李四|你好啊
 */
