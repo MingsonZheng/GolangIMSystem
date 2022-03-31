@@ -18,7 +18,7 @@ An instant messaging system based on golang
 
 构建代码
 ```
-go build -o server main.go server.go
+go build -o server main.go server.go user.go
 
 go build -o client client.go
 ```
