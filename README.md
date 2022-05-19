@@ -1,5 +1,4 @@
-# GolangIMSystem
-An instant messaging system based on golang
+# 📚An instant messaging system based on golang
 
 - 构建基础Server
 - 用户上线功能
